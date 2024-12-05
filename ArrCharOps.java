@@ -46,17 +46,17 @@ public class ArrCharOps {
      *  returns true; Otherwise returns false.
      */
     public static boolean equals(char[] arr1, char[] arr2) {
-        int i = 0;
-        if (arr1.length == arr2.length) {
-            while (i < arr1.length) {
-                if (arr1[i] != arr2[i]){ 
-                    return false;
-                } 
-                i++;
-                return true;
+  
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+        else for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
             } 
-        } 
-        return false;
+        }
+        return true;
+      
         
     }
 
@@ -73,10 +73,19 @@ public class ArrCharOps {
     /** Same as indexOf(char[], char), but starts the search in the given index.
      */
     public static int indexOf(char[] arr, char ch, int fromIndex) {
-        for (int i = fromIndex; i < arr.length; i++) {
-            if (arr[i] == ch) return i;
+        int i = fromIndex;
+        
+        while (i < arr.length) {
+            if (arr[i] == ch) {
+                return i;
+            }
+            else {
+                i++;   
+            }
+
         }
         return -1;
+        
     }
 
     /** Returns the index within the given arr of the last occurrence of the given character.
@@ -128,18 +137,15 @@ public class ArrCharOps {
      *  The hash value of an empty array is zero.
      */
     public static long hashCode(char[] arr) {
-        int n = arr.length;
-        int m = n-1;
-        int hash = 0;
-        if (n == 0) return 0;
-        else {
-            for (int i = 0; i < n; i++) {
-                char c = arr[i];
-                hash += c + Math.pow(7, m);
-                m--;
-            }
+        if (arr.length == 0) return 0;
+        long result = 0;
+        for (int i = 0; i < arr.length; i++) {
+            result += arr[i] * (long) Math.pow(7, arr.length - (i + 1)) ;
         }
-        return hash;
+
+            return result;
+        
+        
     }
 
     /**
